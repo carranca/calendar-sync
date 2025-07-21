@@ -1,0 +1,20 @@
+{
+  "name": "personal-calendar-work-integration",
+  "version": "1.0.0",
+  "description": "Synchronization between personal and work calendars with customized settings",
+  "main": "Code.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "deploy": "clasp push",
+    "logs": "clasp logs"
+  },
+  "keywords": ["calendar", "google-apps-script", "automation"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "@types/google-apps-script": "^1.0.64",
+    "@types/jest": "^29.5.2"
+  }
+}
