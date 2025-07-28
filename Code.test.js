@@ -7,21 +7,22 @@ global.console = {
   error: jest.fn()
 };
 
-// Import constants from Code.js
-const PERSONAL_CALENDAR_ID = "the.carrancas@gmail.com";
-const WORK_CALENDAR_ID = "mcarranca@squareup.com";
-const SCRIPT_PREFIX = "[SYNCED PERSONAL EVENT]";
-const myEmails = [
-  PERSONAL_CALENDAR_ID,
-  WORK_CALENDAR_ID,
-  "mariokarras@gmail.com",
-  "mario.carranca@gmail.com"
-];
+
 
 // Import functions from Code.js by reading the file
 const fs = require('fs');
 const vm = require('vm');
-const CONFIG = require('./config.js');
+const CONFIG = require('./config.test.js');
+
+// Import constants from test config (after CONFIG is loaded)
+const PERSONAL_CALENDAR_ID = CONFIG.PERSONAL_CALENDAR_ID;
+const WORK_CALENDAR_ID = CONFIG.WORK_CALENDAR_ID;
+const SCRIPT_PREFIX = CONFIG.SCRIPT_EVENT_TITLE;
+const myEmails = [
+  CONFIG.PERSONAL_CALENDAR_ID,
+  CONFIG.WORK_CALENDAR_ID,
+  ...CONFIG.ADDITIONAL_EMAILS
+];
 
 const codeContent = fs.readFileSync('./Code.js', 'utf8');
 const context = {

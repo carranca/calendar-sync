@@ -134,3 +134,6 @@ venv/
 .cache/
 tmp/
 temp/
+
+# Scripts
+scripts/fix-lockfile.sh
