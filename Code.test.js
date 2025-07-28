@@ -21,6 +21,8 @@ const myEmails = [
 // Import functions from Code.js by reading the file
 const fs = require('fs');
 const vm = require('vm');
+const CONFIG = require('./config.js');
+
 const codeContent = fs.readFileSync('./Code.js', 'utf8');
 const context = {
   PERSONAL_CALENDAR_ID,
@@ -29,7 +31,16 @@ const context = {
   myEmails,
   CalendarApp: global.CalendarApp,
   console: global.console,
-  Map: Map // Needed for workEventsMap
+  Map: Map, // Needed for workEventsMap
+  // Provide require function for CONFIG
+  require: (path) => {
+    if (path === './config.js') {
+      return CONFIG;
+    }
+    throw new Error(`Module not found: ${path}`);
+  },
+  module: {}, // Provide module object
+  CONFIG: CONFIG
 };
 vm.createContext(context);
 vm.runInContext(codeContent, context);
